@@ -44,3 +44,46 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+<h1> Steps to create the project from scratch </h1>
+1. Check Node version $node -v
+2. Install Node curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+3. Create React App
+   npx create-react-app my-app --template typescript -use-yarn
+   cd my-app
+   npm start
+
+4. Set eslint and prettier
+   yarn add eslint --dev
+   yarn run eslint --init
+   -to check syntax and find problems
+   -import/export
+   -React
+   -Yes
+   -Browser
+   -JSON
+   -Yes
+   -yarn
+   Inside .eslintrc add a new rule `"react/react-in-jsx-scope": "off"` and a new line to env: `"jest": true`
+   yarn add eslint-config-prettier eslint-plugin-prettier prettier --dev
+   In the .eslintrc file add inside the property "extendes" these extensions `"eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"`
+   Create a prettier file .prettierrc with the following code
+  ```
+  {
+    "semi": true,
+    "tabWidth": 2,
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "jsxBracketSameLine": true
+  }
+  ```
+Add scripts the following commands inside the script tag in package.json
+"lint": "eslint .",
+"lint:fix": "eslint --fix",
+"format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+If you're using web storm, go to settings
+Languages & Frameworks>JavaScript>Code Quality Tools > ESLint > Run eslint --fix on save and then go to
+Languages & Frameworks>JavaScript>Prettier> check On Save
+If you run into the `this.libOptions.parse is not a function` error, you can either set the eslint version to an older one
+or you can update WebStorm
